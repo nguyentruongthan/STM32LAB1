@@ -92,32 +92,33 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   int count = 2;
-  int red = 1;
+  int status = 0;
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if(red == 1){
-		  //turn off yellow yellow
-		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, RESET);
-		  //turn on led red
-		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, SET);
-		  count --;
-		  if(count <= 0){
-			  red = !red;
-			  count = 2;
-		  }
-	  }else{
-		  //turn off led red
+	  switch(status){
+	  case 0://red on
 		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, RESET);
-		  //turn on led yellow
 		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, SET);
 		  count --;
-		  if(count <= 0){
-			  red = !red;
+		  if(count == 0){
+			  status = 1;
 			  count = 2;
 		  }
+		  break;
+	  case 1:
+		  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, SET);
+		  HAL_GPIO_WritePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin, RESET);
+		  count --;
+		  if(count == 0){
+			  status = 0;
+			  count = 2;
+		  }
+		  break;
+	  default:
+		  break;
 	  }
 	  HAL_Delay(1000);
   }
