@@ -189,58 +189,36 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  int count = 0;
+  int hour = 6, min = 59, sec = 50;
   while (1)
   {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  switch(count){
-	  case 0:
-	          setNumberOnClock(0);
-	          break;
-	  case 1:
-	          setNumberOnClock(1);
-	          break;
-	  case 2:
-	          setNumberOnClock(2);
-	          break;
-	  case 3:
-	          setNumberOnClock(3);
-	          break;
-	  case 4:
-	          setNumberOnClock(4);
-	          break;
-	  case 5:
-	          setNumberOnClock(5);
-	          break;
-	  case 6:
-	          setNumberOnClock(6);
-	          break;
-	  case 7:
-	          setNumberOnClock(7);
-	          break;
-	  case 8:
-	          setNumberOnClock(8);
-	          break;
-	  case 9:
-	          setNumberOnClock(9);
-	          break;
-	  case 10:
-	          setNumberOnClock(10);
-	          break;
-	  case 11:
-	          setNumberOnClock(11);
-	          break;
-	  case 12:
-		  	  clearAllClock();
-		  	  count = -1;
-		  	  break;
-	  default:
-		  break;
-	  }
-	  count++;
+	  if(sec == 0)
+		  clearNumberOnClock(11);
+	  else
+		  clearNumberOnClock((sec-1)/5);
 
+	  if(min == 0)
+		  clearNumberOnClock(11);
+	  else
+		  clearNumberOnClock((min-1)/5);
+
+	  clearNumberOnClock(hour - 1);
+	  setNumberOnClock(sec/5);
+	  setNumberOnClock(min/5);
+	  setNumberOnClock(hour);
+	  sec++;
+	  if(sec >= 60){
+		  sec = 0;
+		  min++;
+	  }
+	  if(min >= 60){
+		  min = 0;
+		  hour++;
+	  }
+	  hour %= 12;
 	  HAL_Delay(1000);
   }
   /* USER CODE END 3 */
