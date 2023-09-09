@@ -192,9 +192,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if(count >= 10) count = 0;
-	  display7SEG(count++);
-	  HAL_Delay(1000);
+	 if(count >= 10) count = 0;
+	 display7SEG(count++);
+	 HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
