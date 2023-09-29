@@ -195,17 +195,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  if(sec == 0)
-		  clearNumberOnClock(11);
-	  else
-		  clearNumberOnClock((sec-1)/5);
+	  clearAllClock();
 
-	  if(min == 0)
-		  clearNumberOnClock(11);
-	  else
-		  clearNumberOnClock((min-1)/5);
-
-	  clearNumberOnClock(hour - 1);
 	  setNumberOnClock(sec/5);
 	  setNumberOnClock(min/5);
 	  setNumberOnClock(hour);
